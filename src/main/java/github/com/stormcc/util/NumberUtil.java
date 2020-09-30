@@ -3,7 +3,10 @@ package github.com.stormcc.util;
 import com.google.common.base.Strings;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,6 +14,7 @@ public abstract class NumberUtil {
     //字符串是否为纯数字
     private static final String REGEX_NUMBER = "^([0-9])+$";
     private static Pattern PATTERN_NUMBER = Pattern.compile(REGEX_NUMBER);
+    private static String COMMA_SEPARATOR = ",";
 
     public static boolean validNumber(String number){
         if ((number == null) || (number.isEmpty())) {
@@ -137,5 +141,31 @@ public abstract class NumberUtil {
             list.add(Integer.valueOf(s1));
         }
         return list;
+    }
+
+
+    public static List<Short> uniqListOrEmptyList(String ids) {
+        if ( Strings.isNullOrEmpty(ids) ) {
+            return new ArrayList<>(0);
+        }
+
+        String[] arr = ids.split(COMMA_SEPARATOR);
+        if ( arr.length <=0 ){
+            return new ArrayList<>(0);
+        }
+
+
+        Set<Short> set = new HashSet<>();
+        for (String s : arr) {
+            if (  isPositiveInteger(s) ){
+                set.add(Short.valueOf(s));
+            }
+        }
+        if (set.size() == 0) {
+            return new ArrayList<>(0);
+        }
+        List<Short> idList = new ArrayList<>(set);
+        Collections.sort(idList);
+        return idList;
     }
 }
