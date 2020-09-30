@@ -16,7 +16,7 @@
     <okhttp3.version>3.14.9</okhttp3.version>
     <commons-cli.version>1.4</commons-cli.version>
     <slf4j.version>1.7.30</slf4j.version>
-
+    <log4j2.version>2.13.3</log4j2.version>
 
     <maven-war-plugin.version>3.2.0</maven-war-plugin.version>
     <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
@@ -54,6 +54,29 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
       <version>${slf4j.version}</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>log4j</artifactId>
+          <groupId>log4j</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${log4j2.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <version>${log4j2.version}</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>slf4j-api</artifactId>
+          <groupId>org.slf4j</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
