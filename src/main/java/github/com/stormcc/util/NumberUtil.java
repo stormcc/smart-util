@@ -1,6 +1,7 @@
 package github.com.stormcc.util;
 
 import com.google.common.base.Strings;
+import github.com.stormcc.dto.RangeDto;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -166,5 +167,30 @@ public final class NumberUtil {
         List<Short> idList = new ArrayList<>(set);
         Collections.sort(idList);
         return idList;
+    }
+
+
+    public static List<RangeDto> rangeList(Integer maxId, Integer offset, Integer startId){
+        List<RangeDto> list = new ArrayList<>();
+        RangeDto rangeDto;
+        int i=0;
+        int start;
+        int end;
+        while (true) {
+            start = i * offset+startId;
+            if (start>maxId) {
+                break;
+            }
+            end = (i+1) * offset+startId;
+            if ( end > maxId ) {
+                end = maxId;
+            }
+            rangeDto = new RangeDto();
+            rangeDto.setStart(start);
+            rangeDto.setEnd(end);
+            list.add(rangeDto);
+            i++;
+        }
+        return list;
     }
 }
