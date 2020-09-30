@@ -1,4 +1,4 @@
-package util;
+package github.com.stormcc.util;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

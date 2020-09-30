@@ -1,4 +1,4 @@
-package util;
+package github.com.stormcc.util;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
