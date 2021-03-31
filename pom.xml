@@ -17,7 +17,7 @@
     <commons-cli.version>1.4</commons-cli.version>
     <slf4j.version>1.7.30</slf4j.version>
     <log4j2.version>2.13.3</log4j2.version>
-    <guava.version>27.1-jre</guava.version>
+    <guava.version>29.0-jre</guava.version>
     <javax.servlet.version>3.1.0</javax.servlet.version>
 
     <jackson.version>2.11.1</jackson.version>
