@@ -5,6 +5,7 @@ import java.io.StringWriter;
 
 
 public final class LogExceptionStackUtil {
+    private LogExceptionStackUtil(){}
 
     public static String logExceptionStack(Throwable e) {
         StringWriter errorsWriter = new StringWriter();

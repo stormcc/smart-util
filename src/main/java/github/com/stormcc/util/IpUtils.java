@@ -1,5 +1,6 @@
 package github.com.stormcc.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,9 +17,9 @@ import java.util.Enumeration;
 
 /**
  */
-public class IpUtils {
-	private static final Logger logger = LoggerFactory.getLogger(IpUtils.class);
-	
+@Slf4j
+public final class IpUtils {
+
 	private IpUtils(){
 	}
 	
@@ -30,7 +31,7 @@ public class IpUtils {
 		try{
 			return InetAddress.getLocalHost().getHostName();
 		}catch (UnknownHostException e){
-			logger.error("getHostName error. {}", LogExceptionStackUtil.logExceptionStack(e));
+			log.error("getHostName error. {}", LogExceptionStackUtil.logExceptionStack(e));
 		}
 		return null;
 	}
@@ -45,7 +46,7 @@ public class IpUtils {
 		try{
 			return Integer.parseInt(name.substring(0, name.indexOf('@')));
 		}catch (Exception e) {
-			logger.error("getPid error. {}", LogExceptionStackUtil.logExceptionStack(e));
+			log.error("getPid error. {}", LogExceptionStackUtil.logExceptionStack(e));
 		}
 		return -1;
 	}
@@ -157,5 +158,20 @@ public class IpUtils {
 			}
 		}
 		return null;
+	}
+
+	public static long ipv4String2Long(String ipStr){
+		String[] ips = ipStr.split("\\.");
+		return (Long.parseLong(ips[0])<<24) + (Long.parseLong(ips[1]) << 16 )
+				+ (Long.parseLong(ips[2])<<8) + (Long.parseLong(ips[3])  );
+	}
+
+	public static String ipv4Long2String(long ipLong){
+		StringBuilder sb = new StringBuilder();
+		sb.append(ipLong >>> 24).append(".");
+		sb.append((ipLong >>> 16)& 0xFF).append(".");
+		sb.append((ipLong >>> 8) & 0xFF).append(".");
+		sb.append(ipLong & 0xFF );
+		return sb.toString();
 	}
 }

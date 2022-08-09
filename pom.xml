@@ -11,16 +11,16 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
     <java.target.version>1.8</java.target.version>
-    <junit.version>4.12</junit.version>
-    <lombok.version>1.18.12</lombok.version>
-    <okhttp3.version>3.14.9</okhttp3.version>
-    <commons-cli.version>1.4</commons-cli.version>
-    <slf4j.version>1.7.30</slf4j.version>
-    <log4j2.version>2.13.3</log4j2.version>
-    <guava.version>27.1-jre</guava.version>
-    <javax.servlet.version>3.1.0</javax.servlet.version>
+    <junit.version>4.13.2</junit.version>
+    <lombok.version>1.18.24</lombok.version>
+    <okhttp3.version>4.10.0</okhttp3.version>
+    <commons-cli.version>1.5.0</commons-cli.version>
+    <slf4j.version>1.7.36</slf4j.version>
+    <log4j2.version>2.18.0</log4j2.version>
+    <guava.version>31.1-jre</guava.version>
+    <javax.servlet.version>4.0.1</javax.servlet.version>
 
-    <jackson.version>2.11.1</jackson.version>
+    <jackson.version>2.13.3</jackson.version>
 
     <maven-war-plugin.version>3.2.0</maven-war-plugin.version>
     <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
