@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class MapUtil {
+    private MapUtil(){}
 
     public static Map<String, String> map(String content, String on, String keyValueSeparator){
         Map<String, String> map = new HashMap<>();
