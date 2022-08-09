@@ -1,8 +1,6 @@
 package github.com.stormcc.util;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.management.ManagementFactory;
@@ -14,11 +12,17 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Enumeration;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  */
 @Slf4j
 public final class IpUtils {
+	private final static String ipTemplate = "^(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|[1-9])\\."
+			+ "(00?\\d|1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\."
+			+ "(00?\\d|1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\."
+			+ "(00?\\d|1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)$";
 
 	private IpUtils(){
 	}
@@ -173,5 +177,11 @@ public final class IpUtils {
 		sb.append((ipLong >>> 8) & 0xFF).append(".");
 		sb.append(ipLong & 0xFF );
 		return sb.toString();
+	}
+
+	public static boolean validIpv4String(String ipStr) {
+		Pattern pattern = Pattern.compile(ipTemplate);
+		Matcher matcher = pattern.matcher(ipStr);
+		return matcher.matches();
 	}
 }
