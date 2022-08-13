@@ -101,9 +101,9 @@ public final class IpUtils {
 	 * @return
 	 */
 	private static boolean isIntranetIpv4(String ip){
-		return  ( (ip.startsWith("10."))
-				|| (ip.startsWith("192.168."))
-				|| (ip.matches("^172.(1[6-9]]|2|3[0-1])")) );
+		return  ip.startsWith("10.")
+				|| ip.startsWith("192.168.")
+				|| ip.matches("^172.(1[6-9]]|2|3[0-1])") ;
 	}
 
 	/**
