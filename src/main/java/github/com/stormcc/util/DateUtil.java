@@ -7,6 +7,7 @@
  */
 package github.com.stormcc.util;
 
+import github.com.stormcc.exception.InputParameterException;
 import lombok.extern.slf4j.Slf4j;
 
 import java.text.ParseException;
@@ -17,7 +18,8 @@ import java.util.Date;
 import java.util.List;
 
 @Slf4j
-public class DateUtil {
+public final class DateUtil {
+	private DateUtil(){}
 	private static final String defaultDateFormat = "yyyyMMdd";
 	
 	public static String dateToString(Date date, String format){
@@ -81,7 +83,7 @@ public class DateUtil {
 	}
 
 
-	public static int skeletonizedDate(Date date, String format){
+	public static int skeletonDate(Date date, String format){
         if ( date == null ){
             return 0;
         }
@@ -169,26 +171,23 @@ public class DateUtil {
 	 * @return
 	 */
 	public static Date strToDate(String str, String format) {
-		if(str == null){
-			return null;
+		if ( str == null ){
+			throw new InputParameterException("str is null");
 		}
-		if(format == null){
-			format = "yyyy-MM-dd";
+		if ( format == null ){
+			throw new InputParameterException("format is null");
 		}
 		
-		Date date = null;
-	 	SimpleDateFormat sformat = new SimpleDateFormat(format);
+	 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
 	 	try {
 	 		// 设置lenient为false. 否则SimpleDateFormat会比较宽松地验证日期，比如2007-02-29会被接受，并转换成2007-03-01
-	 		sformat.setLenient(false);
-	 		date = sformat.parse(str);
+	 		simpleDateFormat.setLenient(false);
+	 		return simpleDateFormat.parse(str);
 	 	} catch (ParseException e) {
-	 		// e.printStackTrace();
 	 		// 如果throw java.text.ParseException或者NullPointerException，就说明格式不对
-			log.error("format is:{}, str is:{}", format, str);
-	 		return null;
-	 	} 
-	 	return date;
+			String msg = String.format("format is:{}, str is:{}", format, str);
+			throw new InputParameterException(msg);
+	 	}
 	}
 	
 	/**
@@ -199,11 +198,13 @@ public class DateUtil {
 	 * @return
 	 */
 	public static Integer getDateDuration(String startDate, String endDate, String format){
-		if(startDate == null || endDate == null){
+		if ( startDate == null
+				|| endDate == null){
 			return null;
 		}
-		 if(format == null || format.trim().length() == 0){
-		        format = defaultDateFormat;
+		 if ( format == null
+				 || format.trim().length() == 0){
+			format = defaultDateFormat;
 		 }
 		
 		SimpleDateFormat sformat = new SimpleDateFormat(format);
