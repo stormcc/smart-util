@@ -101,10 +101,9 @@ public final class IpUtils {
 	 * @return
 	 */
 	private static boolean isIntranetIpv4(String ip){
-		if ((ip.startsWith("10.")) || (ip.startsWith("192.168.")) || (ip.matches("^172.(1[6-9]]|2|3[0-1])"))) {
-			return true;
-		}
-		return false;
+		return  ( (ip.startsWith("10."))
+				|| (ip.startsWith("192.168."))
+				|| (ip.matches("^172.(1[6-9]]|2|3[0-1])")) );
 	}
 
 	/**
@@ -114,13 +113,15 @@ public final class IpUtils {
 	 */
 	public static String GetUserIp(HttpServletRequest httpRequest){
 		String ip = httpRequest.getHeader("X-Real-IP");
-		if (ip == null || ip.length() == 0
+		if (ip == null
+				|| ip.length() == 0
 				|| "unknown".equalsIgnoreCase(ip) 
 				|| isIntranetIpv4(ip)
 				) {			
 			ip = httpRequest.getHeader("X-Forwarded-For");
 		}
-		if (ip == null || ip.length() == 0
+		if (ip == null
+				|| ip.length() == 0
 				|| "unknown".equalsIgnoreCase(ip)) {
 			ip = httpRequest.getHeader("Proxy-Client-IP");
 		}
