@@ -1,6 +1,5 @@
 package github.com.stormcc.util;
 
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadFactory;
@@ -15,13 +14,12 @@ public final class ThreadPoolFactory {
 
 
     public static ThreadPoolExecutor threadPoolExecutor(String namePrefix){
-        ThreadFactory threadFactory = new ThreadFactoryBuilder()
-                .setNameFormat(namePrefix+"-%d")
-                .build();
+        ThreadFactory threadFactory = new MyThreadFactory(namePrefix);
         return  new ThreadPoolExecutor(DEFAULT_CORE_POOL_SIZE, DEFAULT_MAXIMUM_POOL_SIZE,
                 DEFAULT_KEEP_ALIVE_TIME_MILLISECONDS, TimeUnit.MILLISECONDS,
                 new LinkedBlockingQueue<>(DEFAULT_WORK_QUEUE), threadFactory, new ThreadPoolExecutor.AbortPolicy());
     }
+
 
 
 }
