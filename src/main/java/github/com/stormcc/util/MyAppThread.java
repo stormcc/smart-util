@@ -23,7 +23,7 @@ public class MyAppThread extends Thread{
         super(runnable, name+"-"+createNumber.incrementAndGet());
         setUncaughtExceptionHandler(
                 (t, e) -> {
-                   log.error("SEVERE uncaught in thread" + t.getName(), e);
+                   log.error("SEVERE uncaught in thread:{}, Exception is:{}", t.getName(), LogExceptionStackUtil.logExceptionStack(e));
                 }
         );
     }
