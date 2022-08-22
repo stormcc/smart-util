@@ -12,4 +12,8 @@ public class InputParameterException extends ApplicationException {
     public InputParameterException(String message){
         super(message);
     }
+
+    public InputParameterException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

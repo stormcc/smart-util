@@ -1,5 +1,6 @@
 package github.com.stormcc.util;
 
+import github.com.stormcc.exception.UnknownApplicationException;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -24,6 +25,7 @@ public class MyAppThread extends Thread{
         setUncaughtExceptionHandler(
                 (t, e) -> {
                    log.error("SEVERE uncaught in thread:{}, Exception is:{}", t.getName(), LogExceptionStackUtil.logExceptionStack(e));
+                   throw new UnknownApplicationException("未知且未处理错误", e);
                 }
         );
     }
