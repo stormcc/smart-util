@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration running="info" type="test_log4j2" monitorInterval="0">
+    <properties>
+        <property name="PROJECT_NAME">code</property>
+    </properties>
+
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="%highlight{%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%-24thread][%class{36}.%M():%line] - %msg%xEx%n}{STYLE=Logback}" />
+        </Console>
+
+
+    </appenders>
+
+    <loggers>
+
+        <Root level="info" includeLocation="true"  additivity="true" >
+            <AppenderRef ref="Console"/>
+        </Root>
+    </loggers>
+</configuration>
+
