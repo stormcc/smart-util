@@ -1,4 +1,4 @@
-package github.com.stormcc.util;
+package github.com.stormcc.thread;
 
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;

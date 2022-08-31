@@ -11,10 +11,9 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import java.util.TimeZone;
 
 public final class JacksonUtil {
+    private JacksonUtil(){}
     private static ObjectMapper serializeObjectMapper = null;
     private static ObjectMapper deserializeObjectMapper = null;
-
-    private JacksonUtil(){}
 
     public static ObjectMapper serializeObjectMapper(){
         if ( serializeObjectMapper == null ) {

@@ -21,10 +21,13 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
-public class OkHttpUtil {
-	private static String USER_AGENT= "db.auto.sina.cn";
-    private static long PERFORMANCE_THRESHOLD_VALUE_MILLISECONDS = 300L;
-    private static OkHttpClient okHttpClient = new OkHttpClient.Builder()
+public final class OkHttpUtil {
+
+    private OkHttpUtil(){}
+
+	private static final String USER_AGENT= "db.auto.sina.cn";
+    private static final long PERFORMANCE_THRESHOLD_VALUE_MILLISECONDS = 300L;
+    private static final OkHttpClient okHttpClient = new OkHttpClient.Builder()
             .connectTimeout(3000, TimeUnit.MILLISECONDS)       //设置连接超时
             .readTimeout(3000, TimeUnit.MILLISECONDS)          //设置读超时
             .writeTimeout(3000, TimeUnit.MILLISECONDS)          //设置写超时

@@ -19,14 +19,13 @@ import java.util.regex.Pattern;
  */
 @Slf4j
 public final class IpUtils {
+	private IpUtils(){}
+
 	private final static String ipTemplate = "^(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|[1-9])\\."
 			+ "(00?\\d|1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\."
 			+ "(00?\\d|1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\."
 			+ "(00?\\d|1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)$";
 
-	private IpUtils(){
-	}
-	
 	/**
 	 * 获得本机名
 	 * @return

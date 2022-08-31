@@ -1,5 +1,7 @@
-package github.com.stormcc.util;
+package github.com.stormcc.thread;
 
+
+import github.com.stormcc.thread.MyThreadFactory;
 
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadFactory;

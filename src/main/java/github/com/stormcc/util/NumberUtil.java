@@ -12,6 +12,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class NumberUtil {
+    private NumberUtil(){}
+
     //字符串是否为纯数字
     private static final String REGEX_NUMBER = "^([0-9])+$";
     private static Pattern PATTERN_NUMBER = Pattern.compile(REGEX_NUMBER);

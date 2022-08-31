@@ -10,6 +10,7 @@ import java.util.List;
  * Create at: 2019-08-30
  */
 public final class ShortUtil {
+	private ShortUtil(){}
 	private static String COMMA_SEPARATOR = ",";
 
 	public static List<Short> toListElseEmptyList(String ids) {

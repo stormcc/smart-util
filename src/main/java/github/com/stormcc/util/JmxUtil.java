@@ -23,11 +23,6 @@ public class JmxUtil {
     private static String PARAMETER_BEAN_ATTRIBUTE_NAME = "attribute";
 
 
-    public static void main(String[] args){
-        String value = getBeanAttributeValue(args);
-        System.out.println(value);
-    }
-
     public static String getBeanAttributeValue(String[] args){
         CommandLine commandLine = buildCommandLine(args);
         ObjectName objectName = getObjectName(commandLine);
