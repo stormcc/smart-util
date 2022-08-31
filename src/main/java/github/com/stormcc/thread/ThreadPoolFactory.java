@@ -9,6 +9,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public final class ThreadPoolFactory {
+    private ThreadPoolFactory(){}
     private static final int  DEFAULT_CORE_POOL_SIZE = 64;
     private static final int  DEFAULT_MAXIMUM_POOL_SIZE = 512;
     private static final int  DEFAULT_WORK_QUEUE = 1024;
