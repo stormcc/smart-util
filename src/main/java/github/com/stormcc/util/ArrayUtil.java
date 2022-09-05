@@ -2,6 +2,7 @@ package github.com.stormcc.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 /**
  * Create By: Jimmy Song
@@ -41,5 +42,36 @@ public final class ArrayUtil {
             r = r && diff[i];
         }
         return r;
+    }
+
+    public static boolean equal(int[] a1, int[] a2){
+        if (a1.length != a2.length ) {
+            return false;
+        }
+        for (int i = 0; i < a1.length; i++) {
+            if ( a1[i] != a2[i] ) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static String toString(int[] array, String delimiter, String prefix, String suffix) {
+        return toString0( array,  delimiter,  prefix,  suffix);
+    }
+
+    private static String toString0(int[] array, String delimiter, String prefix, String suffix) {
+        if ( array.length == 0) {
+            return "[]";
+        }
+        StringJoiner stringJoiner = new StringJoiner(delimiter,prefix, suffix);
+        for (int i : array) {
+            stringJoiner.add(String.valueOf(i));
+        }
+        return stringJoiner.toString();
+    }
+
+    public static String toString(int[] array) {
+        return toString0(array, ",", "[", "]");
     }
 }
