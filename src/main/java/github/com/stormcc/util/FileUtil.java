@@ -10,8 +10,9 @@ import java.util.List;
  * Create By: Jimmy Song
  * Create At: 2022-09-05 18:15
  */
-@Slf4j
-public class FileUtil {
+public final class FileUtil {
+    private FileUtil(){}
+
     public static List<String> findAllFile(String path){
         List<String> list = new ArrayList<>();
         fillDeepFile(path, list);
