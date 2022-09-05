@@ -27,7 +27,6 @@ public class FileUtil {
                 || parent.list().length == 0 ) {
             return;
         }
-        log.info("path is:{}, list is:{}", path, parent.list());
         for ( String s : parent.list() ) {
             String fullPathName = path+"/"+s;
             File file = new File(fullPathName);
