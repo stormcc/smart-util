@@ -15,8 +15,8 @@
     <lombok.version>1.18.24</lombok.version>
     <okhttp3.version>4.10.0</okhttp3.version>
     <commons-cli.version>1.5.0</commons-cli.version>
-<!--    <slf4j.version>1.7.36</slf4j.version>-->
-    <slf4j.version>2.0.0</slf4j.version>
+    <slf4j.version>1.7.36</slf4j.version>
+<!--    <slf4j.version>2.0.0</slf4j.version>-->
     <log4j2.version>2.18.0</log4j2.version>
     <guava.version>31.1-jre</guava.version>
     <javax.servlet.version>4.0.1</javax.servlet.version>
@@ -127,6 +127,7 @@
       <artifactId>javax.servlet-api</artifactId>
       <version>${javax.servlet.version}</version>
     </dependency>
+
   </dependencies>
 
   <build>
