@@ -3,6 +3,7 @@ package github.com.stormcc.util;
 import com.google.common.base.Strings;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public final class MapUtil {
@@ -31,5 +32,27 @@ public final class MapUtil {
             }
         }
         return map;
+    }
+
+    public static Map<String, Integer> map(List<String> list) {
+        Map<String, Integer> map = new HashMap<>();
+        for (String s : list) {
+            if (map.containsKey(s)) {
+                map.put(s, map.get(s) +1);
+            } else {
+                map.put(s, 1);
+            }
+        }
+        return map;
+    }
+
+    public static void fillMap(Map<String, Integer> map, List<String> list) {
+        for (String s : list) {
+            if (map.containsKey(s)) {
+                map.put(s, map.get(s) +1);
+            } else {
+                map.put(s, 1);
+            }
+        }
     }
 }
