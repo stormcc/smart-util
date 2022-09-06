@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Item2<I1, I2> extends BaseDto{
-    private I1 i0;
-    private I2 i1;
+public class Item2<I0, I1> extends BaseDto{
+    private I0 i0;
+    private I1 i1;
 }
