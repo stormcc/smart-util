@@ -46,7 +46,7 @@ public final class MapUtil {
         return map;
     }
 
-    public static void fillMap(Map<String, Integer> map, List<String> list) {
+    public static void addToMap(Map<String, Integer> map, List<String> list) {
         for (String s : list) {
             if (map.containsKey(s)) {
                 map.put(s, map.get(s) +1);
