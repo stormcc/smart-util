@@ -38,18 +38,14 @@ public final class MapUtil {
     public static Map<String, Integer> map(List<String> list) {
         Map<String, Integer> map = new HashMap<>();
         for (String s : list) {
-            map.put(s, map.getOrDefault(s, 0)+1);
+            map.put(s, map.getOrDefault(s, 0) +1);
         }
         return map;
     }
 
     public static void addToMap(Map<String, Integer> map, List<String> list) {
         for (String s : list) {
-            if (map.containsKey(s)) {
-                map.put(s, map.get(s) +1);
-            } else {
-                map.put(s, 1);
-            }
+            map.put(s, map.getOrDefault(s, 0) +1);
         }
     }
 
