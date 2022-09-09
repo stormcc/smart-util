@@ -64,11 +64,20 @@ public final class MapUtil {
     }
 
     public static boolean equalIntegerMap(Map<Integer, Integer> map1, Map<Integer, Integer> map2) {
-        if (map1.size() != map2.size() ){
+        if ( map1 == null && map2 == null ) {
+            return true;
+        }
+        if ( map1 == null || map2 == null ) {
+            return false;
+        }
+        if ( map1.size() != map2.size() ){
             return false;
         }
         for (Integer k : map2.keySet()) {
-            if ( ! map2.get(k).equals(map1.getOrDefault(k, 0))) {
+            if ( ! map1.containsKey(k) ) {
+                return false;
+            }
+            if ( ! map2.get(k).equals(map1.get(k))) {
                 return false;
             }
         }
@@ -76,11 +85,20 @@ public final class MapUtil {
     }
 
     public static boolean equalStringMap(Map<String, Integer> map1, Map<String, Integer> map2) {
-        if (map1.size() != map2.size() ){
+        if ( map1 == null && map2 == null ) {
+            return true;
+        }
+        if ( map1 == null || map2 == null ) {
+            return false;
+        }
+        if ( map1.size() != map2.size() ){
             return false;
         }
         for (String k : map2.keySet()) {
-            if ( ! map2.get(k).equals(map1.getOrDefault(k, 0))) {
+            if ( ! map1.containsKey(k) ) {
+                return false;
+            }
+            if ( ! map2.get(k).equals(map1.get(k))) {
                 return false;
             }
         }
