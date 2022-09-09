@@ -53,12 +53,12 @@ public final class MapUtil {
         }
     }
 
-    public static Map<Integer, List<Integer>> groupMap(int[] array) {
+    public static Map<Integer, List<Integer>> groupMapByValue(int[] array) {
         Map<Integer, List<Integer>> map = new HashMap<>();
         List<Integer> list;
         for (int i = 0; i < array.length; i++) {
-            list = map.getOrDefault(i, new ArrayList<>());
-            list.add(array[i] );
+            list = map.getOrDefault(array[i], new ArrayList<>());
+            list.add(i );
         }
         return map;
     }
