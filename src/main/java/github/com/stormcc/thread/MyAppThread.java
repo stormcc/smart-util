@@ -31,6 +31,7 @@ public class MyAppThread extends Thread{
         );
     }
 
+    @Override
     public void run() {
         boolean debug = debugLifecycle;
         if (debug) {
