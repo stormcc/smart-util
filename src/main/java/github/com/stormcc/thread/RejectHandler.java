@@ -1,6 +1,5 @@
 package github.com.stormcc.thread;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Field;
@@ -13,7 +12,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  * Create At: 2022-09-28 09:09
  */
 @Slf4j
-public class RejectHanlde implements RejectedExecutionHandler {
+public class RejectHandler implements RejectedExecutionHandler {
     @Override
     public void rejectedExecution(Runnable r, ThreadPoolExecutor executor){
         Field field= null;
