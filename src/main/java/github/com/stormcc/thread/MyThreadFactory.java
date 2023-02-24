@@ -19,6 +19,7 @@ public class MyThreadFactory implements ThreadFactory {
 
     @Override
     public Thread newThread(@NotNull Runnable r) {
+        log.debug("create new Thread......");
         return new MyAppThread(r, poolName);
     }
 }
