@@ -1,5 +1,6 @@
 package github.com.stormcc.thread;
 
+import github.com.stormcc.util.LogExceptionStackUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 
@@ -20,6 +21,14 @@ public class MyThreadFactory implements ThreadFactory {
     @Override
     public Thread newThread(@NotNull Runnable r) {
         log.debug("create new Thread......");
-        return new MyAppThread(r, poolName);
+        MyAppThread myAppThread = new MyAppThread(r, poolName);
+        myAppThread.setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(Thread t, Throwable e) {
+                log.error("Thread id is:{}, Name is:{}, Throwable is:{}",
+                        t.getId(), t.getName(), LogExceptionStackUtil.logExceptionStack(e));
+            }
+        });
+        return myAppThread;
     }
 }
