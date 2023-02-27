@@ -20,11 +20,13 @@ public class MyThreadFactory implements ThreadFactory {
 
     @Override
     public Thread newThread(@NotNull Runnable r) {
-        log.debug("create new Thread......");
+        System.out.println("new thread....");
+        log.info("create new Thread......");
         MyAppThread myAppThread = new MyAppThread(r, poolName);
         myAppThread.setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
             @Override
             public void uncaughtException(Thread t, Throwable e) {
+                System.out.println("uncaughtException");
                 log.error("Thread id is:{}, Name is:{}, Throwable is:{}",
                         t.getId(), t.getName(), LogExceptionStackUtil.logExceptionStack(e));
             }
