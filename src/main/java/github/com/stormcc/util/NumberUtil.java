@@ -6,6 +6,7 @@ import github.com.stormcc.dto.RangeDto;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -194,5 +195,12 @@ public final class NumberUtil {
             i++;
         }
         return list;
+    }
+
+    public static List<Integer> uniqList(List<Integer> list){
+        if (list == null || list.isEmpty() ) {
+            return new ArrayList<>();
+        }
+        return new ArrayList<>(new LinkedHashSet<>(list));
     }
 }
