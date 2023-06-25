@@ -6,7 +6,7 @@
 
     <appenders>
         <Console name="Console" target="SYSTEM_OUT" follow="true">
-            <PatternLayout pattern="%highlight{%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%-24thread][%class{36}.%M():%line] - %msg%xEx%n}{STYLE=Logback}" />
+            <PatternLayout pattern="%highlight{%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%-24thread][%class.%M():%line] - %msg%xEx%n}{STYLE=Logback}" />
         </Console>
 
 
