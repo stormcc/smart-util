@@ -8,6 +8,7 @@
 package github.com.stormcc.util;
 
 import github.com.stormcc.exception.InputParameterException;
+import github.com.stormcc.exception.InvalidInputParameterException;
 import lombok.extern.slf4j.Slf4j;
 
 import java.text.ParseException;
@@ -19,9 +20,10 @@ import java.util.List;
 
 @Slf4j
 public final class DateUtil {
-	private DateUtil(){}
+	private static final String FORMAT1 = "yyyy-MM-dd HH:mm:ss";
 	private static final String defaultDateFormat = "yyyyMMdd";
-	
+	private DateUtil(){}
+
 	public static String dateToString(Date date, String format){
         if(date == null){
         	return "";
@@ -513,5 +515,30 @@ public final class DateUtil {
 		//设置日历中月份的最大天数
 		cal.set(Calendar.DAY_OF_MONTH, lastDay);
 		return cal.getTime();
+	}
+
+	public static String date2Day(Date date){
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(defaultDateFormat);
+		return simpleDateFormat.format(date);
+	}
+
+	public static Date startOfDate(Date date){
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(FORMAT1);
+		try {
+			String day = date2Day(date)+ " 00:00:00";
+			return simpleDateFormat.parse(day);
+		} catch (ParseException e) {
+			throw new InvalidInputParameterException("输入数据格式错误");
+		}
+	}
+
+	public static Date endOfDate(Date date){
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(FORMAT1);
+		try {
+			String day = date2Day(date)+" 23:59:59";
+			return simpleDateFormat.parse(day );
+		} catch (ParseException e) {
+			throw new InvalidInputParameterException("输入数据格式错误");
+		}
 	}
 }
