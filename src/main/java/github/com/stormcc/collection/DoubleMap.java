@@ -10,8 +10,8 @@ import java.util.concurrent.ConcurrentMap;
  * Create At: 2023-08-03 22:13
  */
 public class DoubleMap<I1, I2> {
-    private ConcurrentMap<I1, I2> map1;
-    private ConcurrentMap<I2, I1> map2;
+    private final ConcurrentMap<I1, I2> map1;
+    private final ConcurrentMap<I2, I1> map2;
 
     public DoubleMap(Map<I1, I2> map){
         map1 = new ConcurrentHashMap<>();
