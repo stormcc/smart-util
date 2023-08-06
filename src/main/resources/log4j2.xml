@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration running="info" type="test_log4j2" monitorInterval="0">
+    <properties>
+        <property name="PROJECT_NAME">codeCommon</property>
+    </properties>
+
+    <appenders>
+        <Console name="console1" target="SYSTEM_OUT" follow="true">
+<!--            <PatternLayout pattern="%highlight{%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%-24thread][%class.%M():%line] - %msg%xEx%n}" />-->
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %highlight{%-5level}{ERROR=Bright RED, WARN=Bright Yellow, INFO=Bright Green, DEBUG=Bright Cyan, TRACE=Bright White} %style{[%t]}{bright,magenta} %style{[%class{36}.%M():%line] - %msg%xEx%n}{cyan}" />
+        </Console>
+    </appenders>
+
+    <Loggers>
+        <!-- 用来控制查看那个类的日志内容（对mybatis name 代表命名空间） -->
+<!--        <logger name="org.example" level="DEBUG" additivity="false">-->
+<!--            <appender-ref ref="console1"/>-->
+<!--        </logger>-->
+
+        <logger name="com.mysql.cj" level="debug" additivity="true">
+            <appender-ref ref="console1"/>
+        </logger>
+        <Root level="info" includeLocation="true"  additivity="false" >
+            <AppenderRef ref="console1"/>
+        </Root>
+    </Loggers>
+</configuration>
+
