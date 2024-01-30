@@ -12,9 +12,11 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import okio.Buffer;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.nio.charset.Charset;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +35,7 @@ public final class OkHttpUtil {
             .writeTimeout(3000, TimeUnit.MILLISECONDS)          //设置写超时
             .retryOnConnectionFailure(true)             //是否自动重连
             .addInterceptor(new LoggingInterceptor())
+            .addInterceptor(new NetworkInterceptor())
             .eventListenerFactory(HttpEventListener.FACTORY)
             .connectionPool(new ConnectionPool(64, 30L, TimeUnit.SECONDS))
             .build();
@@ -183,6 +186,58 @@ public final class OkHttpUtil {
                             domainName, dnsCostMilli, dnsStartMilli, callStartMilli);
                 }
             }
+        }
+    }
+
+    @Slf4j
+    public static class NetworkInterceptor implements Interceptor {
+        @Override
+        public Response intercept(Interceptor.Chain chain) {
+            long start = System.currentTimeMillis();
+            Response response=null;
+            String responseBody = null;
+            String responseCode = null;
+            String url = null;
+            String requestBody = null;
+            try {
+                Request request = chain.request();
+                url = request.url().toString();
+                requestBody = getRequestBody(request);
+                response = chain.proceed(request);
+                responseBody = response.body().string();
+                responseCode = String.valueOf(response.code());
+                MediaType mediaType = response.body().contentType();
+                response = response.newBuilder().body(ResponseBody.create(mediaType,responseBody)).build();
+            } catch (Exception e){
+                log.error("url is:{}, Exception is:{}", url, LogExceptionStackUtil.logExceptionStack(e));
+            } finally {
+                long end = System.currentTimeMillis();
+                String duration = String.valueOf(end - start);
+                log.info("responseTime= {}, requestUrl= {}, params={}, responseCode= {}, result= {}",
+                        duration, url, requestBody, responseCode, responseBody);
+            }
+
+            return response;
+        }
+
+        private String getRequestBody(Request request) {
+            String requestContent = "";
+            if (request == null) {
+                return requestContent;
+            }
+            RequestBody requestBody = request.body();
+            if (requestBody == null) {
+                return requestContent;
+            }
+            try {
+                Buffer buffer = new Buffer();
+                requestBody.writeTo(buffer);
+                Charset charset = Charset.forName("utf-8");
+                requestContent = buffer.readString(charset);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return requestContent;
         }
     }
 }
