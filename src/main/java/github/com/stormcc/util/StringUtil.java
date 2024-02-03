@@ -1,6 +1,10 @@
 package github.com.stormcc.util;
 
+import javax.annotation.Nullable;
+import java.util.Collection;
+
 public final class StringUtil {
+    private static final String[] EMPTY_STRING_ARRAY = {};
     private StringUtil(){}
 
     public static boolean positiveInteger(String str) {
@@ -54,5 +58,13 @@ public final class StringUtil {
             }
         }
         return destStr;
+    }
+
+    public static String[] toStringArray(@Nullable Collection<String> collection) {
+        if ( collection == null || collection.isEmpty() ) {
+            return EMPTY_STRING_ARRAY;
+        } else {
+            return collection.toArray(EMPTY_STRING_ARRAY);
+        }
     }
 }
