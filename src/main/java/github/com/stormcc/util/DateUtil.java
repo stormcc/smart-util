@@ -13,6 +13,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -540,5 +543,9 @@ public final class DateUtil {
 		} catch (ParseException e) {
 			throw new InvalidInputParameterException("输入数据格式错误");
 		}
+	}
+
+	public static Date convert(LocalDateTime localDateTime) {
+		return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
 	}
 }
