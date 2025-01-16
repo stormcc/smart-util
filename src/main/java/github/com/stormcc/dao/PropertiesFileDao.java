@@ -72,10 +72,10 @@ public class PropertiesFileDao {
             prop.load(fileInputStream);
             return prop;
         } catch (FileNotFoundException e) {
-            log.error("file:{}, not exists, FileNotFoundException ", FILE_PATH, e);
+            log.error("return null， file:{}, not exists, FileNotFoundException ", FILE_PATH, e);
             return null;
         } catch (IOException e) {
-            log.error("file:{}, not exists, IOException ", FILE_PATH, e);
+            log.error("return null， file:{}, not exists, IOException ", FILE_PATH, e);
             return null;
         }
     }
