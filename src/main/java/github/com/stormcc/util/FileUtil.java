@@ -95,7 +95,7 @@ public final class FileUtil {
      * @param keyword 文件名包含的关键字
      * @param daysThreshold 过期天数阈值
      */
-    public static void cleanFiles(String dirPathName, String keyword, int daysThreshold) throws IOException {
+    public static void cleanFiles(String dirPathName, String keyword, int daysThreshold)  {
         Path directoryPath = Paths.get(dirPathName);
 
         // 验证目录存在
@@ -139,6 +139,8 @@ public final class FileUtil {
                     }
                 }
             }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
