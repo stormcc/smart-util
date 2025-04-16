@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
 import java.util.TimeZone;
 
 @Slf4j
@@ -80,5 +81,10 @@ public final class JacksonUtil {
 
     public static String valueAsStringThrow(Object o) throws JsonProcessingException {
         return deserializeObjectMapper().writeValueAsString(o);
+    }
+
+    public static <T> String firstOrNullToString(List<T> list){
+        T first = CollectionUtil.getFirstOrNull(list);
+        return JacksonUtil.valueAsString(first);
     }
 }
