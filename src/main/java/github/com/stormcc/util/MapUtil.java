@@ -3,9 +3,13 @@ package github.com.stormcc.util;
 import com.google.common.base.Strings;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public final class MapUtil {
     private MapUtil(){}
@@ -99,5 +103,12 @@ public final class MapUtil {
             }
         }
         return true;
+    }
+
+    public <K,V> Map<K,V> sortMapByValue(Map<K, V> map){
+        Stream<Map.Entry<K, V>> sorted = map.entrySet().stream().sorted((Comparator<? super Map.Entry<K, V>>) Map.Entry.comparingByValue());
+        Map<K, V>  result = new LinkedHashMap<>();
+        sorted.forEach(entry -> result.put(entry.getKey(), entry.getValue()));
+        return result;
     }
 }

@@ -1,5 +1,6 @@
 package github.com.stormcc.util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,5 +26,15 @@ public final class ListUtil {
             }
         }
         return sum;
+    }
+
+    //使用场景：接口分页返回、批量数据分批处理
+    public static <T> List<T> getPage(List<T> list, int pageNum, int pageSize) {
+        int fromIndex = (pageNum - 1) * pageSize;
+        if (fromIndex >= list.size()) {
+            return new ArrayList<>(); // 返回空列表
+        }
+        int toIndex = Math.min(fromIndex + pageSize, list.size());
+        return list.subList(fromIndex, toIndex);
     }
 }

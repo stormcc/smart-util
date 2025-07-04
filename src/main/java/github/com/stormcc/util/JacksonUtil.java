@@ -10,6 +10,9 @@ import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.TimeZone;
 
@@ -86,5 +89,19 @@ public final class JacksonUtil {
     public static <T> String firstOrNullToString(List<T> list){
         T first = CollectionUtil.getFirstOrNull(list);
         return JacksonUtil.valueAsString(first);
+    }
+
+    public static List<String> parseStringToList(String content){
+        ObjectMapper objectMapper = deserializeObjectMapper();
+        try {
+            String[] array = objectMapper.readValue(content, String[].class);
+            return new ArrayList<>(Arrays.asList(array));
+        } catch (JsonProcessingException e) {
+            log.error("return  empty list, JsonProcessingException is ", e);
+            return new ArrayList<>();
+        } catch (IOException e) {
+            log.error("return empty list, IOException is ", e);
+            return new ArrayList<>();
+        }
     }
 }

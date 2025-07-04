@@ -2,6 +2,8 @@ package github.com.stormcc.thread;
 
 import github.com.stormcc.exception.UnknownApplicationException;
 import github.com.stormcc.util.LogExceptionStackUtil;
+import github.com.stormcc.util.WorkTraceUtil;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -11,11 +13,14 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Create At: 2022-08-21 10:14
  */
 @Slf4j
+@Data
 public class MyAppThread extends Thread{
     public static final String DEFAULT_NAME = "myAppThread";
     private static volatile boolean debugLifecycle = false;
     private static final AtomicInteger createNumber = new AtomicInteger(0);
     private static final AtomicInteger aliveNumber = new AtomicInteger(0);
+
+    private String workTraceId = "-";
 
     public MyAppThread(Runnable r) {
         this(r, DEFAULT_NAME);
@@ -32,12 +37,19 @@ public class MyAppThread extends Thread{
     }
 
     @Override
+    public void start(){
+        this.workTraceId = WorkTraceUtil.getTraceId();
+        super.start();
+    }
+
+    @Override
     public void run() {
         boolean debug = debugLifecycle;
         if (debug) {
             log.debug("Create MyAppThread:"+getName());
         }
         try {
+            WorkTraceUtil.setTraceId(workTraceId);
             aliveNumber.incrementAndGet();
             super.run();
         } finally {
@@ -45,6 +57,7 @@ public class MyAppThread extends Thread{
             if (debug) {
                 log.debug("Exiting "+ getName());
             }
+            WorkTraceUtil.removeTraceId();
         }
     }
 

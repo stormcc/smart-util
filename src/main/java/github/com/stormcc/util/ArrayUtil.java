@@ -1,7 +1,12 @@
 package github.com.stormcc.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.StringJoiner;
 
 /**
@@ -75,5 +80,24 @@ public final class ArrayUtil {
         return toString0(array, ",", "[", "]");
     }
 
+    public static <K> List<K> arrayToList(K[] array) {
+        List<K> list = new ArrayList<>();
+        if (array == null) {
+            return list;
+        }
+        list.addAll(Arrays.asList(array));
+        return list;
+    }
 
+    public static <T> Map<T, Integer> count(List<T> list) {
+        Map<T, Integer> map = new HashMap<>();
+        for (T t : list) {
+            map.put(t, map.getOrDefault(t, 0) + 1);
+        }
+        return map;
+    }
+
+    public static <T> List<T> removeDuplicates(List<T> list){
+        return new ArrayList<>(new LinkedHashSet<>(list));
+    }
 }
